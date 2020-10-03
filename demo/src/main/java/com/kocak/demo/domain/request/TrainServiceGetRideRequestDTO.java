@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalTime;
 
@@ -13,7 +12,6 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class TrainServiceGetRideRequestDTO implements Serializable {
 
-    @NotBlank(message = "can't be empty")
     private int trainNumber;
 
 }
