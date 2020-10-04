@@ -12,6 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class BaseResponseDTO implements Serializable {
 
-    private String errorCode;
     private boolean success;
+    private String errorCode;
+    private String errorMessage;
 }

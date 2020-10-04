@@ -4,48 +4,52 @@ import com.kocak.demo.domain.request.TrainServiceAddRideRequestDTO;
 import com.kocak.demo.domain.request.TrainServiceGetRideDetailsRequestDTO;
 import com.kocak.demo.domain.request.TrainServiceGetRideRequestDTO;
 import com.kocak.demo.domain.response.BaseResponseDTO;
+import com.kocak.demo.domain.response.TrainServiceGetRideDetailsResponseDTO;
+import com.kocak.demo.domain.response.TrainServiceGetRideResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceResponseDTO;
-import com.kocak.demo.model.TrainSchedule;
-import com.kocak.demo.repository.TrainRepository;
+import com.kocak.demo.service.TrainService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/api/v1/scheduling")
+@Api(value = "train-application", description = "Train schedule operations")
 public class TrainServiceController {
 
     @Autowired
-    private TrainRepository trainRepository;
+    private TrainService trainService;
 
     @PostMapping("/addride")
-    public BaseResponseDTO addRide(@RequestBody TrainServiceAddRideRequestDTO trainServiceAddRideRequestDTO)
-    {
+    @ApiOperation(value = "Add Ride",
+            notes = "Adds a ride to the train schedule repository and returns BaseResponseDTO")
+    public ResponseEntity<?> addRide(@Valid @RequestBody TrainServiceAddRideRequestDTO trainServiceAddRideRequestDTO) {
         BaseResponseDTO baseResponseDTO = new BaseResponseDTO();
-        //TrainSchedule tr = new TrainSchedule();
-        //tr.setTrainNumber(1);
-        //trainRepository.save(tr);
-        return baseResponseDTO;
+        trainService.addRide(trainServiceAddRideRequestDTO);
+        return ResponseEntity.ok(baseResponseDTO);
     }
 
     @PostMapping("/getride")
-    public TrainServiceResponseDTO getRide(@RequestBody TrainServiceGetRideRequestDTO trainServiceGetRideRequestDTO)
-    {
-        TrainServiceResponseDTO trainServiceResponseDTO = new TrainServiceResponseDTO();
-        Optional<TrainSchedule> m = trainRepository.findByTrainNumber(trainServiceGetRideRequestDTO.getTrainNumber());
-        System.out.println(">><" + m.isPresent());
-        return trainServiceResponseDTO;
+    @ApiOperation(value = "Get Ride",
+            notes = "Gets a ride from the train schedule repository in the type of TrainServiceResponseDTO")
+    public ResponseEntity<?> getRide(@Valid @RequestBody TrainServiceGetRideRequestDTO trainServiceGetRideRequestDTO) {
+        return ResponseEntity.ok(trainService.getRide(trainServiceGetRideRequestDTO));
     }
 
     @PostMapping("/getridedetails")
-    public TrainServiceResponseDTO getRideDetails(@RequestBody TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO)
-    {
-        TrainServiceResponseDTO trainServiceResponseDTO = new TrainServiceResponseDTO();
-        return trainServiceResponseDTO;
+    @ApiOperation(value = "Get Ride Details",
+            notes = "Gets ride details from the train schedule and ticketing repositories in the type of TrainServiceResponseDTO")
+    public ResponseEntity<?> getRideDetails(@Valid @RequestBody TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO) {
+        TrainServiceGetRideDetailsResponseDTO trainServiceResponseDTO = new TrainServiceGetRideDetailsResponseDTO();
+        return ResponseEntity.ok(trainService.getRideDetails(trainServiceGetRideDetailsRequestDTO));
     }
-
 }

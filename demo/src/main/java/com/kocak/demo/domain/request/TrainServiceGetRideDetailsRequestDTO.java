@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TrainServiceGetRideDetailsRequestDTO implements Serializable {
+public class TrainServiceGetRideDetailsRequestDTO  implements Serializable {
 
     @NotBlank(message = "can't be empty")
     int trainNumber;
