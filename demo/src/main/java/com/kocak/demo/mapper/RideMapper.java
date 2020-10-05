@@ -1,7 +1,9 @@
 package com.kocak.demo.mapper;
 
 import com.kocak.demo.domain.request.TrainServiceAddRideRequestDTO;
+import com.kocak.demo.domain.response.TrainServiceGetRideDetailsPassengersResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceGetRideResponseDTO;
+import com.kocak.demo.model.Ticket;
 import com.kocak.demo.model.TrainSchedule;
 
 public class RideMapper {
@@ -16,5 +18,13 @@ public class RideMapper {
         trainServiceGetRideResponseDTO.setDepartureDate(trainSchedule.getDepartureDate());
         trainServiceGetRideResponseDTO.setId(trainSchedule.getId());
         return trainServiceGetRideResponseDTO;
+    }
+
+    public static TrainServiceGetRideDetailsPassengersResponseDTO mapTicketToTrainServiceGetRideDetailsPassengersResponseDTO(Ticket ticket)
+    {
+        TrainServiceGetRideDetailsPassengersResponseDTO trainServiceGetRideDetailsPassengersResponseDTO = new TrainServiceGetRideDetailsPassengersResponseDTO();
+        trainServiceGetRideDetailsPassengersResponseDTO.setPassengerName(ticket.getPassengerName());
+        trainServiceGetRideDetailsPassengersResponseDTO.setTicketNumber(ticket.getTicketNumber());
+        return  trainServiceGetRideDetailsPassengersResponseDTO;
     }
 }

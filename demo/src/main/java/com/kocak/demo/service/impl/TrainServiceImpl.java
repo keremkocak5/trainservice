@@ -3,6 +3,7 @@ package com.kocak.demo.service.impl;
 import com.kocak.demo.domain.request.TrainServiceAddRideRequestDTO;
 import com.kocak.demo.domain.request.TrainServiceGetRideDetailsRequestDTO;
 import com.kocak.demo.domain.request.TrainServiceGetRideRequestDTO;
+import com.kocak.demo.domain.response.TrainServiceGetRideDetailsPassengersResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceGetRideDetailsResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceGetRideResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceResponseDTO;
@@ -16,8 +17,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Component
 public class TrainServiceImpl implements TrainService {
@@ -37,7 +41,7 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public TrainServiceGetRideResponseDTO getRide(TrainServiceGetRideRequestDTO trainServiceGetRideRequestDTO) {
-        Optional<TrainSchedule>  trainSchedule = trainRepository.findByTrainNumber(trainServiceGetRideRequestDTO.getTrainNumber());
+        Optional<TrainSchedule> trainSchedule = trainRepository.findByTrainNumber(trainServiceGetRideRequestDTO.getTrainNumber());
         if (trainSchedule.isPresent())
             return RideMapper.mapTrainScheduleToTrainServiceGetRideResponseDto(trainSchedule.get());
         return null; // kerem burada throw edeyim
@@ -45,16 +49,11 @@ public class TrainServiceImpl implements TrainService {
 
     @Override
     public TrainServiceGetRideDetailsResponseDTO getRideDetails(TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO) {
-        Optional<TrainSchedule>  trainSchedule = trainRepository.findByTrainNumber(trainServiceGetRideDetailsRequestDTO.getTrainNumber());
-        if(trainSchedule.isPresent())
-        {
-             trainSchedule.get().getTickets();
+        TrainServiceGetRideDetailsResponseDTO trainServiceGetRideDetailsResponseDTO = new TrainServiceGetRideDetailsResponseDTO();
+        Optional<TrainSchedule> trainSchedule = trainRepository.findByTrainNumber(trainServiceGetRideDetailsRequestDTO.getTrainNumber());
+        if (trainSchedule.isPresent()) {
+            trainServiceGetRideDetailsResponseDTO.setTrainServiceGetRideDetailsPassengersResponseDTOs(trainSchedule.get().getTickets().stream().map(RideMapper::mapTicketToTrainServiceGetRideDetailsPassengersResponseDTO).collect(Collectors.toList()));
         }
-        /*Optional<Ticket>  ticket = ticketRepository.findByTrainNumber(trainServiceGetRideDetailsRequestDTO.getTrainNumber());
-        if(ticket.isPresent())
-        {
-            ticket.get().getTrainSchedule();
-        }*/
-        return null;
+        return trainServiceGetRideDetailsResponseDTO;
     }
 }

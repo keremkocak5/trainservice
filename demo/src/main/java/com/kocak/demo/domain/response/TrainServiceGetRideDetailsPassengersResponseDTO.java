@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class TrainServiceGetRideDetailsPassengersResponseDTO  {
-    private String ticketNumber;
+    private int ticketNumber;
     private String passengerName;
 }
