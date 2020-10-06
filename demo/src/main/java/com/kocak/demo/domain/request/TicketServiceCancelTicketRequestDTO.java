@@ -14,6 +14,6 @@ import java.time.LocalTime;
 public class TicketServiceCancelTicketRequestDTO implements Serializable {
 
     @NotBlank(message = "can't be empty")
-    private int trainNumber;
+    private int ticketId;
 
 }

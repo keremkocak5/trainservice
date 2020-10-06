@@ -49,7 +49,6 @@ public class TrainServiceController {
     @ApiOperation(value = "Get Ride Details",
             notes = "Gets ride details from the train schedule and ticketing repositories in the type of TrainServiceResponseDTO")
     public ResponseEntity<?> getRideDetails(@Valid @RequestBody TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO) {
-        TrainServiceGetRideDetailsResponseDTO trainServiceResponseDTO = new TrainServiceGetRideDetailsResponseDTO();
         return ResponseEntity.ok(trainService.getRideDetails(trainServiceGetRideDetailsRequestDTO));
     }
 }

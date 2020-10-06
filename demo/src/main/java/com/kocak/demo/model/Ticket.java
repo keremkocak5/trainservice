@@ -1,11 +1,10 @@
 package com.kocak.demo.model;
 
+import com.kocak.demo.enums.TicketStatus;
 import lombok.*;
 
 
 import javax.persistence.*;
-import java.time.LocalTime;
-import java.util.Set;
 
 
 @Getter
@@ -27,7 +26,8 @@ public class Ticket {
 
     private String passengerName;
 
-    /*@ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "trainNumber", insertable = false, updatable = false)
-    private Set<TrainSchedule> trainSchedule;*/
+    private int price;
+
+    private TicketStatus ticketStatus;
+
 }

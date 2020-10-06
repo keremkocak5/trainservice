@@ -1,5 +1,6 @@
 package com.kocak.demo.config;
 
+import com.kocak.demo.enums.TicketStatus;
 import com.kocak.demo.model.Ticket;
 import com.kocak.demo.model.TrainSchedule;
 import com.kocak.demo.repository.TicketRepository;
@@ -22,13 +23,12 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>");
         TrainSchedule ts = TrainSchedule.builder().trainNumber(10).initialCapacity(100).driverName("keremkocak").departureDate(LocalDate.of(2020, 01,01)).build();
         trainRepository.save(ts);
         trainRepository.flush();
-        Ticket ticket = Ticket.builder().passengerName("elif").ticketNumber(1).trainId(1).build();
+        Ticket ticket = Ticket.builder().passengerName("elif").ticketNumber(1).trainId(1).ticketStatus(TicketStatus.VALID).price(8).build();
         ticketRepository.save(ticket);
-        ticket = Ticket.builder().passengerName("kerem").ticketNumber(2).trainId(1).build();
+        ticket = Ticket.builder().passengerName("kerem").ticketNumber(2).trainId(1).ticketStatus(TicketStatus.VALID).price(10).build();
         ticketRepository.save(ticket);
     }
 }

@@ -23,4 +23,6 @@ public class TicketServiceSellTicketRequestDTO implements Serializable {
     @NotBlank(message = "can't be empty")
     private String passengerName;
 
+    private int price;
+
 }

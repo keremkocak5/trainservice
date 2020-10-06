@@ -25,6 +25,8 @@ public class RideMapper {
         TrainServiceGetRideDetailsPassengersResponseDTO trainServiceGetRideDetailsPassengersResponseDTO = new TrainServiceGetRideDetailsPassengersResponseDTO();
         trainServiceGetRideDetailsPassengersResponseDTO.setPassengerName(ticket.getPassengerName());
         trainServiceGetRideDetailsPassengersResponseDTO.setTicketNumber(ticket.getTicketNumber());
+        trainServiceGetRideDetailsPassengersResponseDTO.setTicketStatus(ticket.getTicketStatus());
+        trainServiceGetRideDetailsPassengersResponseDTO.setId(ticket.getId());
         return  trainServiceGetRideDetailsPassengersResponseDTO;
     }
 }

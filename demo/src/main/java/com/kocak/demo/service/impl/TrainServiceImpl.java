@@ -35,8 +35,7 @@ public class TrainServiceImpl implements TrainService {
     @Override
     @Transactional
     public void addRide(TrainServiceAddRideRequestDTO trainServiceAddRideRequestDTO) {
-        TrainSchedule trainSchedule = RideMapper.mapTrainServiceAddRideRequestDtoToTrainSchedule(trainServiceAddRideRequestDTO);
-        trainRepository.save(trainSchedule);
+        trainRepository.save(RideMapper.mapTrainServiceAddRideRequestDtoToTrainSchedule(trainServiceAddRideRequestDTO));
     }
 
     @Override
