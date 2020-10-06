@@ -16,7 +16,7 @@ import java.util.Map;
 public class ContollerAdvisor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Object> handleCityNotFoundException(
+    public ResponseEntity<Object> handleEntityNotFoundException(
             EntityNotFoundException ex, WebRequest request) {
         return new ResponseEntity<>(Constants.NO_DATA_FOUND_MESSAGE, HttpStatus.ACCEPTED);
     }
