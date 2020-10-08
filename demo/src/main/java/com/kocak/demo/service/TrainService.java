@@ -10,6 +10,9 @@ import com.kocak.demo.domain.response.TrainServiceResponseDTO;
 public interface TrainService {
 
     public void addRide(TrainServiceAddRideRequestDTO trainServiceAddRideRequestDTO);
+
     public TrainServiceGetRideResponseDTO getRide(TrainServiceGetRideRequestDTO trainServiceGetRideRequestDTO);
+
     public TrainServiceGetRideDetailsResponseDTO getRideDetails(TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO);
+
 }

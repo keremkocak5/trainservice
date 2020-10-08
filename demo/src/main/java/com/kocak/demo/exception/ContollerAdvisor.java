@@ -1,6 +1,7 @@
 package com.kocak.demo.exception;
 
 import com.kocak.demo.util.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Slf4j
 @ControllerAdvice
 public class ContollerAdvisor extends ResponseEntityExceptionHandler {
 
@@ -19,6 +21,12 @@ public class ContollerAdvisor extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleEntityNotFoundException(
             EntityNotFoundException ex, WebRequest request) {
         return new ResponseEntity<>(Constants.NO_DATA_FOUND_MESSAGE, HttpStatus.ACCEPTED);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception ex) {
+        log.error("Unknown Exception: " + ex.getStackTrace());
+        return new ResponseEntity<>(Constants.MASTER_EXCEPTION, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
