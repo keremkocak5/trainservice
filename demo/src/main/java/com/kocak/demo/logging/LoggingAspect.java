@@ -1,12 +1,9 @@
 package com.kocak.demo.logging;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -19,7 +16,7 @@ public class LoggingAspect {
         long startTime = System.currentTimeMillis();
         Object object = point.proceed();
         long endtime = System.currentTimeMillis();
-        log.info("Class Name: "+ point.getSignature().getDeclaringTypeName() +". Method Name: "+ point.getSignature().getName() + ". Time taken for Execution is : " + (endtime-startTime) +"ms");
+        log.info("Class Name: " + point.getSignature().getDeclaringTypeName() + ". Method Name: " + point.getSignature().getName() + ". Time taken for Execution is : " + (endtime - startTime) + "ms");
         return object;
     }
 
@@ -35,9 +32,9 @@ public class LoggingAspect {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }*/
 
-    /**
-     * Pointcut that matches all Spring beans in the application's main packages.
-     *//*
+/**
+ * Pointcut that matches all Spring beans in the application's main packages.
+ *//*
     @Pointcut("within(@com.kocak.demo *)" )
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.

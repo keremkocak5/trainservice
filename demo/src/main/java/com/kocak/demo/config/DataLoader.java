@@ -23,7 +23,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        TrainSchedule ts = TrainSchedule.builder().trainNumber(10).initialCapacity(100).driverName("keremkocak").departureDate(LocalDate.of(2020, 01,01)).build();
+        TrainSchedule ts = TrainSchedule.builder().trainNumber(10).initialCapacity(100).driverName("keremkocak").departureDate(LocalDate.of(2020, 01, 01)).build();
         trainRepository.save(ts);
         trainRepository.flush();
         Ticket ticket = Ticket.builder().passengerName("elif").ticketNumber(1).trainId(1).ticketStatus(TicketStatus.VALID).price(8).build();

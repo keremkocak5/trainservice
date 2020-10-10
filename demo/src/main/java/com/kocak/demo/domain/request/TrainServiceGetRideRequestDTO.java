@@ -1,21 +1,18 @@
 package com.kocak.demo.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.time.LocalTime;
 
 @Getter
 @Setter
-
+@JsonIgnoreProperties
 public class TrainServiceGetRideRequestDTO implements Serializable {
 
-    @NotNull(message = "bos olamaz")
+    @NotNull(message = "trainNumber cannot be blank")
     private int trainNumber;
 
 }

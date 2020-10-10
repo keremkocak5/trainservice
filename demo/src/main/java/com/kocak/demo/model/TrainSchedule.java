@@ -2,13 +2,9 @@ package com.kocak.demo.model;
 
 import lombok.*;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
-import javax.transaction.Transactional;
-import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter

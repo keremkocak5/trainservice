@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TrainServiceGetRideDetailsPassengersResponseDTO  {
+public class TrainServiceGetRideDetailsPassengersResponseDTO {
     private int id;
     private int ticketNumber;
     private String passengerName;

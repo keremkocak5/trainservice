@@ -1,30 +1,34 @@
 package com.kocak.demo.domain.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 @Getter
 @Setter
+@JsonIgnoreProperties
 public class TrainServiceAddRideRequestDTO implements Serializable {
 
-    @NotBlank(message = "can't be empty")
-    @Size(min=20, max=30)
+    @NotBlank(message = "trainNumber cannot be blank")
     private int trainNumber;
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "departureDate cannot be blank")
     private LocalDate departureDate;
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "initialCapacity cannot be blank")
+    @Min(value = 3, message = "initialCapacity cannot be less than 3")
     private int initialCapacity;
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "driverName cannot be blank")
+    @NotEmpty(message = "driverName cannot be blank")
+    @NotNull(message = "driverName cannot be blank")
     private String driverName;
 
 }

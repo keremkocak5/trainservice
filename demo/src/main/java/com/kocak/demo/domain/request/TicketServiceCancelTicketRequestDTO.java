@@ -6,14 +6,15 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.time.LocalTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class TicketServiceCancelTicketRequestDTO implements Serializable {
 
-    @NotBlank(message = "can't be empty")
+    private static final long serialVersionUID = 1L;
+
+    @NotBlank(message = "ticketId cannot be blank")
     private int ticketId;
 
 }

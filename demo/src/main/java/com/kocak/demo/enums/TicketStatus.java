@@ -10,8 +10,7 @@ public enum TicketStatus {
     @Getter
     private int statusCode;
 
-    TicketStatus(int statusCode)
-    {
+    TicketStatus(int statusCode) {
         this.statusCode = statusCode;
     }
 }

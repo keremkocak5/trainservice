@@ -1,8 +1,7 @@
 package com.kocak.demo.service;
 
-import com.kocak.demo.domain.request.*;
-import com.kocak.demo.domain.response.TrainServiceGetRideDetailsResponseDTO;
-import com.kocak.demo.domain.response.TrainServiceGetRideResponseDTO;
+import com.kocak.demo.domain.request.TicketServiceCancelTicketRequestDTO;
+import com.kocak.demo.domain.request.TicketServiceSellTicketRequestDTO;
 
 public interface TicketService {
 

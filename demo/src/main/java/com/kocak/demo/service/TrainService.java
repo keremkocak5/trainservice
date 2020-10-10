@@ -5,7 +5,6 @@ import com.kocak.demo.domain.request.TrainServiceGetRideDetailsRequestDTO;
 import com.kocak.demo.domain.request.TrainServiceGetRideRequestDTO;
 import com.kocak.demo.domain.response.TrainServiceGetRideDetailsResponseDTO;
 import com.kocak.demo.domain.response.TrainServiceGetRideResponseDTO;
-import com.kocak.demo.domain.response.TrainServiceResponseDTO;
 
 public interface TrainService {
 

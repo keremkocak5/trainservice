@@ -3,7 +3,6 @@ package com.kocak.demo.model;
 import com.kocak.demo.enums.TicketStatus;
 import lombok.*;
 
-
 import javax.persistence.*;
 
 
