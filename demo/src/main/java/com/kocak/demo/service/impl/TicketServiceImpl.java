@@ -23,7 +23,8 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public void sellTicket(TicketServiceSellTicketRequestDTO ticketServiceSellTicketRequestDTO) {
-        ticketRepository.save(TicketMapper.mapTicketServiceSellTicketRequestDtoToTicket(ticketServiceSellTicketRequestDTO));
+        Ticket ticket = TicketMapper.mapTicketServiceSellTicketRequestDtoToTicket(ticketServiceSellTicketRequestDTO);
+        ticketRepository.save(ticket);
     }
 
     @Override

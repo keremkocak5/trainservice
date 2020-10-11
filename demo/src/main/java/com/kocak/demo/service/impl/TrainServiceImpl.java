@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,7 @@ public class TrainServiceImpl implements TrainService {
     public TrainServiceGetRideDetailsResponseDTO getRideDetails(TrainServiceGetRideDetailsRequestDTO trainServiceGetRideDetailsRequestDTO) {
         TrainServiceGetRideDetailsResponseDTO trainServiceGetRideDetailsResponseDTO = new TrainServiceGetRideDetailsResponseDTO();
         Optional<TrainSchedule> trainSchedule = trainRepository.findByTrainNumber(trainServiceGetRideDetailsRequestDTO.getTrainNumber());
-        if (trainSchedule.isPresent()) {
+        if (trainSchedule.isPresent() && Objects.nonNull(trainSchedule.get().getTickets())) {
             trainServiceGetRideDetailsResponseDTO.setTrainServiceGetRideDetailsPassengersResponseDTOs(trainSchedule.get().getTickets().stream().map(RideMapper::mapTicketToTrainServiceGetRideDetailsPassengersResponseDTO).collect(Collectors.toList()));
         } else {
             throw new EntityNotFoundException();

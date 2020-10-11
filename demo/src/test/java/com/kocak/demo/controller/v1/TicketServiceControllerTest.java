@@ -20,10 +20,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TicketServiceControllerTest {
 
     @InjectMocks
-    public TicketServiceController ticketServiceController;
+    private TicketServiceController ticketServiceController;
 
     @Mock
-    public TicketServiceImpl ticketServiceImpl;
+    private TicketServiceImpl ticketServiceImpl;
 
     @Before
     public void setup() {
