@@ -14,7 +14,7 @@ public class TicketServiceCancelTicketRequestDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "ticketId cannot be blank")
-    private int ticketId;
+    @NotBlank(message = "ticketNumber cannot be blank")
+    private int ticketNumber;
 
 }

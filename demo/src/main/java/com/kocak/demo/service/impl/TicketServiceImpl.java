@@ -30,7 +30,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public void cancelTicket(TicketServiceCancelTicketRequestDTO ticketServiceCancelTicketRequestDTO) {
-        Optional<Ticket> ticket = ticketRepository.findById(ticketServiceCancelTicketRequestDTO.getTicketId());
+        Optional<Ticket> ticket = ticketRepository.findById(ticketServiceCancelTicketRequestDTO.getTicketNumber());
         if (ticket.isPresent()) {
             ticket.get().setTicketStatus(TicketStatus.CANCELLED);
             ticketRepository.save(ticket.get());
